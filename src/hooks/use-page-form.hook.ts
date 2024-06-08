@@ -1,4 +1,6 @@
+import { LocalStorageKeys } from '@/consts';
 import { usePagesContext } from '@/context/pages.context';
+import { getItem, setItem } from '@/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
@@ -37,6 +39,15 @@ const SortSchema = z
 
 type SignUpSchemaType = z.infer<typeof SortSchema>;
 export type PageFormErrors = FieldErrors<SignUpSchemaType>;
+
+const defaultValues = getItem<SignUpSchemaType>(LocalStorageKeys.PageSettings, {
+  firstPage: 1,
+  lastPage: 16,
+  inBatch: 16,
+  emptyPage: 1,
+  isDoubleSided: false,
+});
+
 export const usePageForm = () => {
   const {
     control,
@@ -47,13 +58,7 @@ export const usePageForm = () => {
   } = useForm<SignUpSchemaType>({
     resolver: zodResolver(SortSchema),
     mode: 'onChange',
-    defaultValues: {
-      firstPage: 1,
-      lastPage: 16,
-      inBatch: 16,
-      emptyPage: 1,
-      isDoubleSided: false,
-    },
+    defaultValues,
   });
 
   const { setValues } = usePagesContext();
@@ -70,13 +75,12 @@ export const usePageForm = () => {
       if (!!Object.keys(errors).length) {
         return;
       }
-      //debounce
 
       const isParsed = SortSchema.safeParse(value);
       const newValues = isParsed.data;
-      console.log('ne11wValues', isParsed);
+
       if (newValues) {
-        console.log('newValues', newValues);
+        setItem(LocalStorageKeys.PageSettings, newValues);
         setValues(newValues);
       }
     });

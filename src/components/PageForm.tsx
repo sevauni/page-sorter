@@ -6,11 +6,11 @@ import { FormError } from './FormError';
 import { ParamInput } from './ParamInput';
 import { Label } from './ui/label';
 export const PagesForm = () => {
-  const { control, emptyPage, firstPage, inBatch, lastPage, isDoubleSided, errors } = usePageForm();
+  const { control, emptyPage, firstPage, inBatch, lastPage, errors } = usePageForm();
 
   return (
     <>
-      <Card className="flex flex-col">
+      <Card className="flex flex-col min-w-80">
         <CardHeader>
           <CardTitle className="text-2xl">Page sorter</CardTitle>
           <CardDescription>

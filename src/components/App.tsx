@@ -9,9 +9,9 @@ function App() {
     <>
       <ThemeProvider defaultTheme="dark" storageKey="ui-theme">
         <PagesProvider>
-          <div className=" h-screen flex justify-between relative">
-            <PagesForm></PagesForm>
-            <ResultCard></ResultCard>
+          <div className=" h-screen flex flex-col justify-between relative md:flex-row">
+            <PagesForm/>
+            <ResultCard/>
             <ModeToggle/>
           </div>
   

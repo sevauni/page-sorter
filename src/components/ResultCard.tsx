@@ -19,17 +19,20 @@ export const ResultCard = () => {
     return batches.map((bat) => (isDoubleSided ? calculatePagesTwo(bat) : calculatePagesOne(bat)));
   }, [emptyPage, firstPage, inBatch, isDoubleSided, lastPage]);
 
-
   return (
     <Card className="flex flex-col min-w-96 mt-12">
       <ScrollArea>
         <CardHeader>
           <CardTitle className="text-2xl">Result</CardTitle>
-          {result.map((batch, index) => (
-            <ResultBatch batch={batch} index={index} key={index} />
-          ))}
         </CardHeader>
-        <CardContent className="grid gap-4"></CardContent>
+        <CardContent className="grid gap-4">
+          <ul>
+          {result.map((batch, index) => (
+            <ResultBatch batch={batch} index={index + 1} key={index} />
+          ))}
+          </ul>
+
+        </CardContent>
       </ScrollArea>
     </Card>
   );

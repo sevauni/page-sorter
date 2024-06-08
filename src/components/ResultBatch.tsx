@@ -8,10 +8,10 @@ export const ResultBatch: React.FC<ResultBatchProps> = ({ batch, index }) => {
   const firstSideName = !secondSide ? 'Pages' : 'First side';
 
   return (
-    <>
+    <li className="mb-4">
       {!!index && <h5 className="font-bold">Batch №{index}</h5>}
       <PrintQueue label={firstSideName} values={firstSide} />
       {!!secondSide && <PrintQueue label="Second side" values={secondSide} />}
-    </>
+    </li>
   );
 };
