@@ -5,13 +5,9 @@ import {
   divideBatches,
   fillBlanks,
 } from '@/utils/page.utils';
-import { Label } from '@radix-ui/react-label';
 import React from 'react';
-import { PrintQueue } from './PrintQueue';
 import { ResultBatch } from './ResultBatch';
-import { Button } from './ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
-import { Input } from './ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
 export const ResultCard = () => {
   const { emptyPage, firstPage, inBatch, isDoubleSided, lastPage } = usePagesContext();
