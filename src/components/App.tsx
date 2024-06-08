@@ -9,7 +9,7 @@ const App = () => {
     <>
       <ThemeProvider defaultTheme="dark" storageKey="ui-theme">
         <PagesProvider>
-          <div className=" h-screen flex flex-col justify-between relative md:flex-row">
+          <div className=" h-screen flex flex-col justify-start relative md:flex-row">
             <PagesForm />
             <ResultCard />
             <ModeToggle />

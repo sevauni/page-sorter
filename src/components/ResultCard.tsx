@@ -20,7 +20,7 @@ export const ResultCard = () => {
   }, [emptyPage, firstPage, inBatch, isDoubleSided, lastPage]);
 
   return (
-    <Card className="flex flex-col min-w-96 mt-12">
+    <Card className="flex flex-1 flex-col min-w-96 mt-12">
       <ScrollArea>
         <CardHeader>
           <CardTitle className="text-2xl">Result</CardTitle>
