@@ -1,26 +1,23 @@
 const DEFAULT_DIVIDER = 4;
 
-const elementsToAdd = (length: number, by: number): number =>
-  (by - (length % by)) % by;
+export type PageSorterResult = {
+  firstSide: number[];
+  secondSide?: number[];
+};
 
-export const fillBlanks = (
-  firstPage: number,
-  lastPage: number,
-  blankPage: number
-): number[] => {
+const elementsToAdd = (length: number, by: number): number => (by - (length % by)) % by;
+
+export const fillBlanks = (firstPage: number, lastPage: number, emptyPage: number): number[] => {
   const amount = lastPage - firstPage + 1;
   const sequence = Array(amount)
     .fill(0)
     .map((_, i) => i + firstPage);
   const resultingBatch = Math.min(amount, DEFAULT_DIVIDER);
   const additional = elementsToAdd(sequence.length, resultingBatch);
-  return sequence.concat(Array(additional).fill(blankPage));
+  return sequence.concat(Array(additional).fill(emptyPage));
 };
 
-export const divideBatches = (
-  pages: number[],
-  batchSize: number
-): number[][] => {
+export const divideBatches = (pages: number[], batchSize: number): number[][] => {
   if (batchSize >= pages.length) {
     return [pages];
   }
@@ -33,12 +30,7 @@ export const divideBatches = (
   return batches;
 };
 
-export const calculatePagesOne = (
-  pages: number[]
-): {
-  firstSide: number[];
-  secondSide: number[];
-} => {
+export const calculatePagesOne = (pages: number[]): PageSorterResult => {
   const firstSide: number[] = [];
   const secondSide: number[] = [];
 
@@ -57,11 +49,7 @@ export const calculatePagesOne = (
   return { firstSide, secondSide };
 };
 
-export const calculatePagesTwo = (
-  pages: number[]
-): {
-  firstSide: number[];
-} => {
+export const calculatePagesTwo = (pages: number[]): PageSorterResult => {
   const firstSide: number[] = [];
 
   let pointerLeft = 0;

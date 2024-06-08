@@ -49,6 +49,7 @@ export const usePageForm = () => {
       lastPage: 16,
       inBatch: 16,
       emptyPage: 1,
+      isDoubleSided: false,
     },
   });
 
@@ -67,11 +68,11 @@ export const usePageForm = () => {
       }
       //debounce
 
-      console.log('asd', value);
       const isParsed = SortSchema.safeParse(value);
       const newValues = isParsed.data;
-
+console.log('ne11wValues', isParsed)
       if (newValues) {
+        console.log('newValues', newValues)
         setValues(newValues);
       }
     });
