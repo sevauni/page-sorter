@@ -71,7 +71,6 @@ export const usePageForm = () => {
 
   React.useEffect(() => {
     const subscription = watch((value) => {
-      console.log('value', value);
       if (!!Object.keys(errors).length) {
         return;
       }
