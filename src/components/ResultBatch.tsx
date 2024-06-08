@@ -5,7 +5,7 @@ type ResultBatchProps = { batch: PageSorterResult; index: number };
 
 export const ResultBatch: React.FC<ResultBatchProps> = ({ batch, index }) => {
   const { firstSide, secondSide } = batch;
-  const firstSideName = !!secondSide ? 'Pages' : 'First side';
+  const firstSideName = !secondSide ? 'Pages' : 'First side';
 
   return (
     <>

@@ -39,6 +39,7 @@ type SignUpSchemaType = z.infer<typeof SortSchema>;
 export type PageFormErrors = FieldErrors<SignUpSchemaType>;
 export const usePageForm = () => {
   const {
+    control,
     register,
     handleSubmit,
     watch,
@@ -61,10 +62,11 @@ export const usePageForm = () => {
   const lastPage = register('lastPage', options);
   const inBatch = register('inBatch', options);
   const emptyPage = register('emptyPage', options);
-  const isDoubleSided = register('isDoubleSided', options);
+  const isDoubleSided = register('isDoubleSided');
 
   React.useEffect(() => {
     const subscription = watch((value) => {
+      console.log('value', value);
       if (!!Object.keys(errors).length) {
         return;
       }
@@ -82,6 +84,7 @@ export const usePageForm = () => {
   }, [watch, errors]);
 
   return {
+    control,
     firstPage,
     lastPage,
     inBatch,

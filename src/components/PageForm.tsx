@@ -1,10 +1,12 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Switch } from '@/components/ui/switch';
 import { usePageForm } from '@/hooks/use-page-form.hook';
+import { Controller } from 'react-hook-form';
 import { FormError } from './FormError';
 import { ParamInput } from './ParamInput';
-
+import { Label } from './ui/label';
 export const PagesForm = () => {
-  const { emptyPage, firstPage, inBatch, lastPage, errors } = usePageForm();
+  const { control, emptyPage, firstPage, inBatch, lastPage, isDoubleSided, errors } = usePageForm();
 
   return (
     <>
@@ -24,6 +26,18 @@ export const PagesForm = () => {
           <FormError err={errors.inBatch} />
           <ParamInput label="Empty Page Number" {...emptyPage} />
           <FormError err={errors.emptyPage} />
+          <Controller
+            control={control}
+            name="isDoubleSided"
+            render={({ field: { onChange, onBlur, value, name, ref } }) => {
+              return (
+                <div className="flex items-center space-x-2">
+                  <Label htmlFor={name}>{!!value ? 'Double Side' : 'One Side'}</Label>
+                  <Switch onBlur={onBlur} onCheckedChange={onChange} checked={value} ref={ref} />
+                </div>
+              );
+            }}
+          ></Controller>
         </CardContent>
       </Card>
     </>
