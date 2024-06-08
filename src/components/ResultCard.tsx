@@ -27,11 +27,10 @@ export const ResultCard = () => {
         </CardHeader>
         <CardContent className="grid gap-4">
           <ul>
-          {result.map((batch, index) => (
-            <ResultBatch batch={batch} index={index + 1} key={index} />
-          ))}
+            {result.map((batch, index) => (
+              <ResultBatch batch={batch} index={index + 1} key={index} />
+            ))}
           </ul>
-
         </CardContent>
       </ScrollArea>
     </Card>
