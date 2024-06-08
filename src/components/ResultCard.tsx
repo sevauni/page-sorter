@@ -28,8 +28,8 @@ export const ResultCard = () => {
     <Card className="flex flex-col min-w-96">
       <CardHeader>
         <CardTitle className="text-2xl">Result</CardTitle>
-        {result.map((batch) => (
-          <ResultBatch batch={batch} />
+        {result.map((batch, index) => (
+          <ResultBatch batch={batch} index={index} key={index} />
         ))}
       </CardHeader>
       <CardContent className="grid gap-4"></CardContent>

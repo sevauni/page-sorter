@@ -10,13 +10,16 @@ const SortSchema = z
   .object({
     firstPage: z
       .number({ message: 'Not a valid number' })
-      .nonnegative({ message: 'Number must be positive' }),
+      .nonnegative({ message: 'Number must be positive' })
+      .max(4000, { message: 'Number must be less than 4000' }),
     lastPage: z
       .number({ message: 'Not a valid number' })
-      .nonnegative({ message: 'Number must be positive' }),
+      .nonnegative({ message: 'Number must be positive' })
+      .max(4000, { message: 'Number must be less than 4000' }),
     inBatch: z
       .number({ message: 'Not a valid number' })
       .nonnegative({ message: 'Number must be positive' })
+      .max(200, { message: 'Number must be less than 200' })
       .refine((num) => num % 4 === 0, {
         message: 'Number must be divisible by 4',
       }),
