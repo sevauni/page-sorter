@@ -7,7 +7,7 @@ The **Booklet Page Number Calculator** is a web application designed to help use
 
 ## Website
 
-[Live Demo](https://yourusername.github.io/page-sorter)
+[Live Demo](https://sevauni.github.io/page-sorter)
 
 ![License](https://img.shields.io/github/license/sevauni/page-sorter)
 ![Last Commit](https://img.shields.io/github/last-commit/sevauni/page-sorter)
