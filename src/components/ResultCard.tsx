@@ -8,6 +8,7 @@ import {
 import React from 'react';
 import { ResultBatch } from './ResultBatch';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { ScrollArea } from './ui/scroll-area';
 
 export const ResultCard = () => {
   const { emptyPage, firstPage, inBatch, isDoubleSided, lastPage } = usePagesContext();
@@ -18,17 +19,18 @@ export const ResultCard = () => {
     return batches.map((bat) => (isDoubleSided ? calculatePagesTwo(bat) : calculatePagesOne(bat)));
   }, [emptyPage, firstPage, inBatch, isDoubleSided, lastPage]);
 
-  console.log('result', result);
 
   return (
-    <Card className="flex flex-col min-w-96">
-      <CardHeader>
-        <CardTitle className="text-2xl">Result</CardTitle>
-        {result.map((batch, index) => (
-          <ResultBatch batch={batch} index={index} key={index} />
-        ))}
-      </CardHeader>
-      <CardContent className="grid gap-4"></CardContent>
+    <Card className="flex flex-col min-w-96 mt-12">
+      <ScrollArea>
+        <CardHeader>
+          <CardTitle className="text-2xl">Result</CardTitle>
+          {result.map((batch, index) => (
+            <ResultBatch batch={batch} index={index} key={index} />
+          ))}
+        </CardHeader>
+        <CardContent className="grid gap-4"></CardContent>
+      </ScrollArea>
     </Card>
   );
 };

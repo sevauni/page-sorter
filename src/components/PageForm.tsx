@@ -37,7 +37,7 @@ export const PagesForm = () => {
                 </div>
               );
             }}
-          ></Controller>
+          />
         </CardContent>
       </Card>
     </>
