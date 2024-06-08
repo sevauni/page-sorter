@@ -3,15 +3,14 @@ import { Label } from '@/components/ui/label';
 import React from 'react';
 type ParamInputProps = {
   label: string;
-  id: string;
-};
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
-export const ParamInput = React.forwardRef<HTMLInputElement, ParamInputProps>((props, ref) => {
-  const { label, id, ...rest } = props;
+export const ParamInput = React.forwardRef<HTMLInputElement, ParamInputProps>((props, refer) => {
+  const { id, label } = props;
   return (
     <div className="grid gap-2">
       <Label htmlFor={id}>{label}</Label>
-      <Input {...props} ref={ref} type="number" placeholder="1" required />
+      <Input {...props} ref={refer} />
     </div>
   );
 });

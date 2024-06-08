@@ -9,37 +9,17 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { usePageForm } from '@/hooks/use-page-form.hook';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { FormError } from './FormError';
 import { ModeToggle } from './ModeToggle';
 import { ParamInput } from './ParamInput';
 
-const SortSchema = z
-  .object({
-    firstPage: z.number().nonnegative(),
-    lastPage: z.number().nonnegative(),
-    inBatch: z
-      .number()
-      .nonnegative()
-      .refine((num) => num % 4 === 0, {
-        message: 'Number must be divisible by 4',
-      }),
-    emptyPage: z.number().nonnegative(),
-  })
-  .refine((data) => data.firstPage <= data.lastPage, {
-    message: 'First page must be less or equal the last page',
-  });
-
-type SignUpSchemaType = z.infer<typeof SortSchema>;
-
 export const PagesForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignUpSchemaType>({ resolver: zodResolver(SortSchema) });
-  console.log(errors)
+  const { emptyPage, firstPage, inBatch, lastPage, errors } = usePageForm();
+
   return (
     <>
       <Card className="flex flex-col">
@@ -50,14 +30,15 @@ export const PagesForm = () => {
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
-          <ParamInput id="firstPage" label="First Page Number" {...register('firstPage')} />
-          <ParamInput id="lastPage" label="Last Page Number" {...register('lastPage')} />
-          <ParamInput id="inBatch" label="Pages in a batch" {...register('inBatch')} />
-          <ParamInput id="emptyPage" label="Any Empty Page" {...register('emptyPage')} />
+          <ParamInput label="First Page Number" {...firstPage} />
+          <FormError err={errors.firstPage} />
+          <ParamInput label="Last Page Number" {...lastPage} />
+          <FormError err={errors.lastPage} />
+          <ParamInput label="Pages In a Batch" {...inBatch} />
+          <FormError err={errors.inBatch} />
+          <ParamInput label="Empty Page Number" {...emptyPage} />
+          <FormError err={errors.emptyPage} />
         </CardContent>
-        <CardFooter>
-          <Button className="w-full" onSubmit={handleSubmit}>Generate</Button>
-        </CardFooter>
       </Card>
     </>
   );
