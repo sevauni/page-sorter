@@ -14,7 +14,7 @@ export const PagesForm = () => {
         <CardHeader>
           <CardTitle className="text-2xl">Page sorter</CardTitle>
           <CardDescription>
-            Enter the params of the document so you could print it like a book
+          Enter the document parameters to arrange the pages for booklet printing
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
